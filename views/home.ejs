@@ -1,0 +1,172 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">Find <span class="accent">100% Cotton</span> Products</h1>
+      <p class="hero-subtitle">Search thousands of pure cotton and almost-cotton products from top retailers. Clothing, bedding, towels, baby goods — all in one place.</p>
+
+      <form class="hero-search" action="/search" method="GET">
+        <input type="text" name="q" placeholder="What are you looking for? (e.g., cotton t-shirt, organic sheets)">
+        <button type="submit">Search Products</button>
+      </form>
+
+      <div class="hero-quick-links">
+        <span>Popular:</span>
+        <a href="/search?q=t-shirt">T-Shirts</a>
+        <a href="/search?q=jeans">Jeans</a>
+        <a href="/search?q=sheets">Sheets</a>
+        <a href="/search?q=towels">Towels</a>
+        <a href="/search?q=baby">Baby</a>
+        <a href="/search?organic=true">Organic</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number"><%= stats.totalProducts %>+</span>
+        <span class="stat-label">Products</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number"><%= stats.avgCottonPercent %>%</span>
+        <span class="stat-label">Avg Cotton</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number"><%= stats.organicCount %></span>
+        <span class="stat-label">Organic</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number"><%= stats.retailers %></span>
+        <span class="stat-label">Retailers</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filter Pills -->
+<section class="filter-pills-section">
+  <div class="container">
+    <div class="filter-pills">
+      <a href="/search?cottonMin=100" class="pill pill-active">100% Cotton</a>
+      <a href="/search?organic=true" class="pill">Organic</a>
+      <a href="/search?category=clothing" class="pill">Clothing</a>
+      <a href="/search?category=home" class="pill">Home</a>
+      <a href="/search?category=baby" class="pill">Baby</a>
+      <a href="/search?sort=price-low" class="pill">Best Value</a>
+      <a href="/search?sort=rating" class="pill">Top Rated</a>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="categories-section">
+  <div class="container">
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="categories-grid">
+      <a href="/search?category=clothing" class="category-card">
+        <div class="category-icon">👕</div>
+        <h3>Clothing</h3>
+        <p>T-shirts, jeans, underwear, socks & more</p>
+      </a>
+      <a href="/search?category=home" class="category-card">
+        <div class="category-icon">🏠</div>
+        <h3>Home & Bedding</h3>
+        <p>Sheets, towels, blankets & more</p>
+      </a>
+      <a href="/search?category=baby" class="category-card">
+        <div class="category-icon">👶</div>
+        <h3>Baby</h3>
+        <p>Onesies, swaddles & baby essentials</p>
+      </a>
+      <a href="/search?category=accessories" class="category-card">
+        <div class="category-icon">🎒</div>
+        <h3>Accessories</h3>
+        <p>Bags, hats, bandanas & more</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="featured-section">
+  <div class="container">
+    <h2 class="section-title">Featured Products</h2>
+    <p class="section-subtitle">Hand-picked 100% cotton and almost-cotton products we love</p>
+
+    <div class="products-grid">
+      <% featured.forEach(product => { %>
+      <a href="/product/<%= product.id %>" class="product-card">
+        <div class="product-image">
+          <img src="<%= product.image %>" alt="<%= product.name %>" loading="lazy">
+          <% if (product.cottonPercent === 100) { %>
+          <span class="badge badge-cotton">100% Cotton</span>
+          <% } else { %>
+          <span class="badge badge-blend"><%= product.cottonPercent %>% Cotton</span>
+          <% } %>
+          <% if (product.organic) { %>
+          <span class="badge badge-organic">Organic</span>
+          <% } %>
+        </div>
+        <div class="product-info">
+          <div class="product-brand"><%= product.brand %></div>
+          <h3 class="product-name"><%= product.name %></h3>
+          <div class="product-meta">
+            <span class="product-price">$<%= product.price.toFixed(2) %></span>
+            <span class="product-rating">⭐ <%= product.rating %></span>
+          </div>
+          <div class="product-retailer">via <%= product.retailer %></div>
+        </div>
+      </a>
+      <% }) %>
+    </div>
+
+    <div class="section-cta">
+      <a href="/search" class="btn btn-primary">Browse All Products →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Why Cotton Section -->
+<section class="why-section">
+  <div class="container">
+    <h2 class="section-title">Why Choose Cotton?</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🌬️</div>
+        <h3>Breathable</h3>
+        <p>Cotton fibers allow air flow, keeping you cool in summer and warm in winter.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🧴</div>
+        <h3>Hypoallergenic</h3>
+        <p>Natural cotton is gentle on sensitive skin and unlikely to cause irritation.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💪</div>
+        <h3>Durable</h3>
+        <p>Cotton gets stronger when wet and lasts for years with proper care.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">♻️</div>
+        <h3>Sustainable</h3>
+        <p>100% biodegradable. Organic cotton uses less water and no pesticides.</p>
+      </div>
+    </div>
+    <div class="section-cta">
+      <a href="/why-cotton" class="btn btn-outline">Learn More About Cotton →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Can't Find What You're Looking For?</h2>
+      <p>Search our database of <%= stats.totalProducts %>+ cotton products from top retailers.</p>
+      <form class="cta-search" action="/search" method="GET">
+        <input type="text" name="q" placeholder="Search for any cotton product...">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</section>

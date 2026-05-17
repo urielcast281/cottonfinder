@@ -1,0 +1,134 @@
+<div class="search-page">
+  <div class="container">
+    <!-- Search Header -->
+    <div class="search-header">
+      <h1><%= query ? `Results for "${query}"` : 'Browse All Products' %></h1>
+      <p class="search-count"><%= resultCount %> product<%= resultCount !== 1 ? 's' : '' %> found</p>
+    </div>
+
+    <div class="search-layout">
+      <!-- Filters Sidebar -->
+      <aside class="search-filters">
+        <form action="/search" method="GET" id="filterForm">
+          <% if (query) { %>
+          <input type="hidden" name="q" value="<%= query %>">
+          <% } %>
+
+          <div class="filter-group">
+            <h4>Category</h4>
+            <select name="category" onchange="this.form.submit()">
+              <option value="all">All Categories</option>
+              <% categories.forEach(cat => { %>
+              <option value="<%= cat %>" <%= filters.category === cat ? 'selected' : '' %>><%= cat.charAt(0).toUpperCase() + cat.slice(1) %></option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <h4>Cotton Content</h4>
+            <div class="filter-options">
+              <label class="filter-option">
+                <input type="radio" name="cottonMin" value="" <%= !filters.cottonMin ? 'checked' : '' %> onchange="this.form.submit()">
+                <span>Any</span>
+              </label>
+              <label class="filter-option">
+                <input type="radio" name="cottonMin" value="100" <%= filters.cottonMin === '100' ? 'checked' : '' %> onchange="this.form.submit()">
+                <span>100% Cotton</span>
+              </label>
+              <label class="filter-option">
+                <input type="radio" name="cottonMin" value="95" <%= filters.cottonMin === '95' ? 'checked' : '' %> onchange="this.form.submit()">
+                <span>95%+ Cotton</span>
+              </label>
+              <label class="filter-option">
+                <input type="radio" name="cottonMin" value="80" <%= filters.cottonMin === '80' ? 'checked' : '' %> onchange="this.form.submit()">
+                <span>80%+ Cotton</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h4>Organic</h4>
+            <label class="filter-option">
+              <input type="checkbox" name="organic" value="true" <%= filters.organic === 'true' ? 'checked' : '' %> onchange="this.form.submit()">
+              <span>Organic Only</span>
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price Range</h4>
+            <div class="price-inputs">
+              <input type="number" name="priceMin" placeholder="Min" value="<%= filters.priceMin || '' %>" min="0">
+              <span>—</span>
+              <input type="number" name="priceMax" placeholder="Max" value="<%= filters.priceMax || '' %>" min="0">
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Apply</button>
+          </div>
+
+          <div class="filter-group">
+            <h4>Retailer</h4>
+            <select name="retailer" onchange="this.form.submit()">
+              <option value="all">All Retailers</option>
+              <% retailers.forEach(r => { %>
+              <option value="<%= r %>" <%= filters.retailer === r ? 'selected' : '' %>><%= r %></option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <h4>Sort By</h4>
+            <select name="sort" onchange="this.form.submit()">
+              <option value="">Relevance</option>
+              <option value="price-low" <%= filters.sort === 'price-low' ? 'selected' : '' %>>Price: Low to High</option>
+              <option value="price-high" <%= filters.sort === 'price-high' ? 'selected' : '' %>>Price: High to Low</option>
+              <option value="rating" <%= filters.sort === 'rating' ? 'selected' : '' %>>Top Rated</option>
+              <option value="reviews" <%= filters.sort === 'reviews' ? 'selected' : '' %>>Most Reviews</option>
+              <option value="cotton" <%= filters.sort === 'cotton' ? 'selected' : '' %>>Highest Cotton %</option>
+            </select>
+          </div>
+
+          <a href="/search" class="btn btn-outline btn-sm">Clear All Filters</a>
+        </form>
+      </aside>
+
+      <!-- Results Grid -->
+      <div class="search-results">
+        <% if (results.length === 0) { %>
+        <div class="no-results">
+          <div class="no-results-icon">🔍</div>
+          <h3>No products found</h3>
+          <p>Try adjusting your filters or search terms.</p>
+          <a href="/search" class="btn btn-primary">Browse All Products</a>
+        </div>
+        <% } else { %>
+        <div class="products-grid">
+          <% results.forEach(product => { %>
+          <a href="/product/<%= product.id %>" class="product-card">
+            <div class="product-image">
+              <img src="<%= product.image %>" alt="<%= product.name %>" loading="lazy">
+              <% if (product.cottonPercent === 100) { %>
+              <span class="badge badge-cotton">100% Cotton</span>
+              <% } else { %>
+              <span class="badge badge-blend"><%= product.cottonPercent %>% Cotton</span>
+              <% } %>
+              <% if (product.organic) { %>
+              <span class="badge badge-organic">Organic</span>
+              <% } %>
+            </div>
+            <div class="product-info">
+              <div class="product-brand"><%= product.brand %></div>
+              <h3 class="product-name"><%= product.name %></h3>
+              <p class="product-desc"><%= product.description.substring(0, 80) %>...</p>
+              <div class="product-meta">
+                <span class="product-price">$<%= product.price.toFixed(2) %></span>
+                <span class="product-rating">⭐ <%= product.rating %> (<%= product.reviews.toLocaleString() %>)</span>
+              </div>
+              <div class="product-retailer">via <%= product.retailer %></div>
+            </div>
+          </a>
+          <% }) %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>

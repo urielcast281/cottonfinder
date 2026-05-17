@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title : 'CottonFinder' %></title>
+  <meta name="description" content="Find 100% cotton and almost-cotton products from top retailers. Search, compare, and shop the best cotton clothing, bedding, towels, and more.">
+  <meta name="keywords" content="100% cotton, cotton products, organic cotton, cotton clothing, cotton bedding, cotton towels, sustainable fashion">
+  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'CottonFinder' %>">
+  <meta property="og:description" content="Find 100% cotton and almost-cotton products from top retailers.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <span class="logo-icon">🌿</span>
+        <span class="logo-text">Cotton<span class="logo-accent">Finder</span></span>
+      </a>
+
+      <form class="header-search" action="/search" method="GET">
+        <input type="text" name="q" placeholder="Search cotton products..." value="<%= typeof query !== 'undefined' ? query : '' %>">
+        <button type="submit">🔍</button>
+      </form>
+
+      <nav class="nav">
+        <a href="/search" class="nav-link <%= currentPath === '/search' ? 'active' : '' %>">Browse</a>
+        <a href="/why-cotton" class="nav-link <%= currentPath === '/why-cotton' ? 'active' : '' %>">Why Cotton</a>
+        <a href="/about" class="nav-link <%= currentPath === '/about' ? 'active' : '' %>">About</a>
+      </nav>
+
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/search">Browse Products</a>
+      <a href="/why-cotton">Why Cotton</a>
+      <a href="/about">About</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <%- body %>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <span class="logo-icon">🌿</span>
+            <span class="logo-text">Cotton<span class="logo-accent">Finder</span></span>
+          </a>
+          <p class="footer-tagline">Find 100% cotton and almost-cotton products from top retailers. We help you shop smarter for natural, breathable, sustainable fabrics.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Browse</h4>
+          <a href="/search">All Products</a>
+          <a href="/search?category=clothing">Clothing</a>
+          <a href="/search?category=home">Home & Bedding</a>
+          <a href="/search?category=baby">Baby</a>
+          <a href="/search?category=accessories">Accessories</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Filters</h4>
+          <a href="/search?cottonMin=100">100% Cotton Only</a>
+          <a href="/search?organic=true">Organic Cotton</a>
+          <a href="/search?sort=price-low">Best Value</a>
+          <a href="/search?sort=rating">Top Rated</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Info</h4>
+          <a href="/why-cotton">Why Cotton?</a>
+          <a href="/about">About Us</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <%= new Date().getFullYear() %> CottonFinder. All rights reserved.</p>
+        <p class="affiliate-disclaimer">CottonFinder may earn a commission from purchases made through links on this site. This does not affect the price you pay.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

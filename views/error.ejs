@@ -1,0 +1,15 @@
+<div class="error-page">
+  <div class="container">
+    <div class="error-content">
+      <div class="error-icon"><%= error.status === 404 ? '🔍' : '⚠️' %></div>
+      <h1><%= error.status %> — <%= error.message %></h1>
+      <% if (error.details) { %>
+      <p><%= error.details %></p>
+      <% } %>
+      <div class="error-actions">
+        <a href="/" class="btn btn-primary">Go Home</a>
+        <a href="/search" class="btn btn-outline">Browse Products</a>
+      </div>
+    </div>
+  </div>
+</div>

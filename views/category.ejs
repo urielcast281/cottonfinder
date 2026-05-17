@@ -1,0 +1,92 @@
+<div class="search-page">
+  <div class="container">
+    <div class="search-header">
+      <h1><%= category.charAt(0).toUpperCase() + category.slice(1) %></h1>
+      <p class="search-count"><%= productCount %> product<%= productCount !== 1 ? 's' : '' %> found</p>
+    </div>
+
+    <div class="search-layout">
+      <aside class="search-filters">
+        <form action="/search" method="GET">
+          <input type="hidden" name="category" value="<%= category %>">
+
+          <div class="filter-group">
+            <h4>Cotton Content</h4>
+            <div class="filter-options">
+              <label class="filter-option">
+                <input type="radio" name="cottonMin" value="" checked onchange="this.form.submit()">
+                <span>Any</span>
+              </label>
+              <label class="filter-option">
+                <input type="radio" name="cottonMin" value="100" onchange="this.form.submit()">
+                <span>100% Cotton</span>
+              </label>
+              <label class="filter-option">
+                <input type="radio" name="cottonMin" value="95" onchange="this.form.submit()">
+                <span>95%+ Cotton</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h4>Organic</h4>
+            <label class="filter-option">
+              <input type="checkbox" name="organic" value="true" onchange="this.form.submit()">
+              <span>Organic Only</span>
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Sort By</h4>
+            <select name="sort" onchange="this.form.submit()">
+              <option value="">Relevance</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+              <option value="cotton">Highest Cotton %</option>
+            </select>
+          </div>
+        </form>
+      </aside>
+
+      <div class="search-results">
+        <% if (products.length === 0) { %>
+        <div class="no-results">
+          <div class="no-results-icon">🔍</div>
+          <h3>No products found</h3>
+          <p>Try a different category or adjust your filters.</p>
+          <a href="/search" class="btn btn-primary">Browse All Products</a>
+        </div>
+        <% } else { %>
+        <div class="products-grid">
+          <% products.forEach(product => { %>
+          <a href="/product/<%= product.id %>" class="product-card">
+            <div class="product-image">
+              <img src="<%= product.image %>" alt="<%= product.name %>" loading="lazy">
+              <% if (product.cottonPercent === 100) { %>
+              <span class="badge badge-cotton">100% Cotton</span>
+              <% } else { %>
+              <span class="badge badge-blend"><%= product.cottonPercent %>% Cotton</span>
+              <% } %>
+              <% if (product.organic) { %>
+              <span class="badge badge-organic">Organic</span>
+              <% } %>
+            </div>
+            <div class="product-info">
+              <div class="product-brand"><%= product.brand %></div>
+              <h3 class="product-name"><%= product.name %></h3>
+              <p class="product-desc"><%= product.description.substring(0, 80) %>...</p>
+              <div class="product-meta">
+                <span class="product-price">$<%= product.price.toFixed(2) %></span>
+                <span class="product-rating">⭐ <%= product.rating %> (<%= product.reviews.toLocaleString() %>)</span>
+              </div>
+              <div class="product-retailer">via <%= product.retailer %></div>
+            </div>
+          </a>
+          <% }) %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>

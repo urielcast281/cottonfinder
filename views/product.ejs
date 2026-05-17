@@ -1,0 +1,109 @@
+<div class="product-page">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/search?category=<%= product.category %>"><%= product.category.charAt(0).toUpperCase() + product.category.slice(1) %></a>
+      <span>/</span>
+      <span><%= product.name %></span>
+    </nav>
+
+    <div class="product-layout">
+      <!-- Product Image -->
+      <div class="product-gallery">
+        <img src="<%= product.image %>" alt="<%= product.name %>" class="product-main-image">
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-details">
+        <div class="product-badges">
+          <% if (product.cottonPercent === 100) { %>
+          <span class="badge badge-cotton">100% Cotton</span>
+          <% } else { %>
+          <span class="badge badge-blend"><%= product.cottonPercent %>% Cotton</span>
+          <% } %>
+          <% if (product.organic) { %>
+          <span class="badge badge-organic">Organic</span>
+          <% } %>
+        </div>
+
+        <div class="product-brand"><%= product.brand %></div>
+        <h1 class="product-title"><%= product.name %></h1>
+
+        <div class="product-rating-large">
+          <span class="stars">⭐ <%= product.rating %></span>
+          <span class="review-count"><%= product.reviews.toLocaleString() %> reviews</span>
+        </div>
+
+        <p class="product-description"><%= product.description %></p>
+
+        <div class="product-price-large">
+          <span class="price">$<%= product.price.toFixed(2) %></span>
+          <span class="retailer">Sold by <%= product.retailer %></span>
+        </div>
+
+        <a href="<%= product.affiliateUrl %>" target="_blank" rel="noopener" class="btn btn-primary btn-large">
+          View on <%= product.retailer %> →
+        </a>
+
+        <div class="product-tags">
+          <% product.tags.forEach(tag => { %>
+          <a href="/search?q=<%= tag %>" class="tag"><%= tag %></a>
+          <% }) %>
+        </div>
+
+        <div class="product-specs">
+          <h3>Product Details</h3>
+          <table>
+            <tr>
+              <td>Material</td>
+              <td><%= product.cottonPercent %>% Cotton<%= product.organic ? ' (Organic)' : '' %></td>
+            </tr>
+            <tr>
+              <td>Category</td>
+              <td><%= product.category.charAt(0).toUpperCase() + product.category.slice(1) %> — <%= product.subcategory.charAt(0).toUpperCase() + product.subcategory.slice(1) %></td>
+            </tr>
+            <tr>
+              <td>Brand</td>
+              <td><%= product.brand %></td>
+            </tr>
+            <tr>
+              <td>Retailer</td>
+              <td><%= product.retailer %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <% if (related.length > 0) { %>
+    <section class="related-section">
+      <h2>You Might Also Like</h2>
+      <div class="products-grid products-grid-sm">
+        <% related.forEach(product => { %>
+        <a href="/product/<%= product.id %>" class="product-card">
+          <div class="product-image">
+            <img src="<%= product.image %>" alt="<%= product.name %>" loading="lazy">
+            <% if (product.cottonPercent === 100) { %>
+            <span class="badge badge-cotton">100%</span>
+            <% } else { %>
+            <span class="badge badge-blend"><%= product.cottonPercent %>%</span>
+            <% } %>
+          </div>
+          <div class="product-info">
+            <div class="product-brand"><%= product.brand %></div>
+            <h3 class="product-name"><%= product.name %></h3>
+            <div class="product-meta">
+              <span class="product-price">$<%= product.price.toFixed(2) %></span>
+              <span class="product-rating">⭐ <%= product.rating %></span>
+            </div>
+          </div>
+        </a>
+        <% }) %>
+      </div>
+    </section>
+    <% } %>
+  </div>
+</div>
