@@ -19,6 +19,7 @@ const products = [
     brand: "Comfort Colors",
     tags: ["organic", "basics", "mens", "womens", "casual"],
     featured: true,
+    trending: true,
     rating: 4.5,
     reviews: 2847
   },
@@ -38,6 +39,7 @@ const products = [
     brand: "Carhartt",
     tags: ["heavyweight", "pocket", "mens", "workwear", "durable"],
     featured: true,
+    trending: true,
     rating: 4.7,
     reviews: 5123
   },
@@ -116,6 +118,7 @@ const products = [
     brand: "Unbranded",
     tags: ["selvedge", "raw", "denim", "mens", "japanese", "premium"],
     featured: true,
+    trending: true,
     rating: 4.8,
     reviews: 678
   },
@@ -175,6 +178,7 @@ const products = [
     brand: "Hanes",
     tags: ["boxer-briefs", "mens", "basics", "breathable", "3-pack"],
     featured: true,
+    trending: true,
     rating: 4.5,
     reviews: 12453
   },
@@ -234,6 +238,7 @@ const products = [
     brand: "Coyuchi",
     tags: ["turkish", "bath", "luxury", "set", "700gsm"],
     featured: true,
+    trending: true,
     rating: 4.7,
     reviews: 2345
   },
@@ -333,6 +338,7 @@ const products = [
     brand: "Burt's Bees Baby",
     tags: ["organic", "baby", "onesie", "gots", "3-pack", "newborn"],
     featured: true,
+    trending: true,
     rating: 4.8,
     reviews: 8901
   },
@@ -432,6 +438,7 @@ const products = [
     brand: "Brooks Brothers",
     tags: ["oxford", "button-down", "mens", "formal", "classic"],
     featured: true,
+    trending: true,
     rating: 4.6,
     reviews: 3456
   },
@@ -535,6 +542,10 @@ function getFeaturedProducts() {
   return products.filter(p => p.featured);
 }
 
+function getTrendingProducts() {
+  return products.filter(p => p.trending);
+}
+
 function searchProducts(query, filters = {}) {
   let results = products;
 
@@ -629,6 +640,7 @@ module.exports = {
   getProductsByCategory,
   getProductsByCottonPercent,
   getFeaturedProducts,
+  getTrendingProducts,
   searchProducts,
   getCategories,
   getSubcategories,

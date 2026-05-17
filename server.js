@@ -30,9 +30,10 @@ app.use((req, res, next) => {
 // Homepage
 app.get('/', (req, res) => {
   const featured = db.getFeaturedProducts();
+  const trending = db.getTrendingProducts();
   const stats = db.getStats();
   const categories = db.getCategories();
-  res.render('home', { featured, stats, categories, title: 'CottonFinder — Find 100% Cotton Products' });
+  res.render('home', { featured, trending, stats, categories, title: 'CottonFinder — Find 100% Cotton Products' });
 });
 
 // Search / Browse

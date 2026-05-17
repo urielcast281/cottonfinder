@@ -43,8 +43,9 @@
           <span class="retailer">Sold by <%= product.retailer %></span>
         </div>
 
-        <a href="<%= product.affiliateUrl %>" target="_blank" rel="noopener" class="btn btn-primary btn-large">
-          View on <%= product.retailer %> →
+        <!-- BIG CTA BUTTON -->
+        <a href="<%= product.affiliateUrl %>" target="_blank" rel="noopener" class="btn-shop-now">
+          🛒 Shop Now at <%= product.retailer %> — $<%= product.price.toFixed(2) %>
         </a>
 
         <div class="product-tags">
@@ -74,6 +75,17 @@
             </tr>
           </table>
         </div>
+      </div>
+    </div>
+
+    <!-- Ad Slot: Below product detail -->
+    <div class="ad-slot ad-slot-product">
+      <div class="ad-placeholder">
+        <span class="="ad-label">Sponsored</span>
+        <ins class="adsbygoogle"
+             style="display:block; width:728px; height:90px; margin:0 auto;"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"></ins>
       </div>
     </div>
 

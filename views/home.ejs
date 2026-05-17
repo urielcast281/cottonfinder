@@ -57,6 +57,55 @@
   </div>
 </section>
 
+<!-- Trending Now -->
+<section class="trending-section">
+  <div class="container">
+    <h2 class="section-title">🔥 Trending Now</h2>
+    <p class="section-subtitle">The most popular cotton products our shoppers are loving right now</p>
+
+    <div class="products-grid">
+      <% trending.forEach(product => { %>
+      <a href="/product/<%= product.id %>" class="product-card">
+        <div class="product-image">
+          <img src="<%= product.image %>" alt="<%= product.name %>" loading="lazy">
+          <% if (product.cottonPercent === 100) { %>
+          <span class="badge badge-cotton">100% Cotton</span>
+          <% } else { %>
+          <span class="badge badge-blend"><%= product.cottonPercent %>% Cotton</span>
+          <% } %>
+          <% if (product.organic) { %>
+          <span class="badge badge-organic">Organic</span>
+          <% } %>
+        </div>
+        <div class="product-info">
+          <div class="product-brand"><%= product.brand %></div>
+          <h3 class="product-name"><%= product.name %></h3>
+          <div class="product-meta">
+            <span class="product-price">$<%= product.price.toFixed(2) %></span>
+            <span class="product-rating">⭐ <%= product.rating %> (<%= product.reviews.toLocaleString() %>)</span>
+          </div>
+          <div class="product-retailer">via <%= product.retailer %></div>
+        </div>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- Ad Slot: Below Trending -->
+<div class="ad-slot ad-slot-banner">
+  <div class="container">
+    <div class="ad-placeholder">
+      <span class="ad-label">Advertisement</span>
+      <!-- Adsterra or AdSense banner ad goes here -->
+      <ins class="adsbygoogle"
+           style="display:block; width:728px; height:90px; margin:0 auto;"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"></ins>
+    </div>
+  </div>
+</div>
+
 <!-- Categories -->
 <section class="categories-section">
   <div class="container">

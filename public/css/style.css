@@ -394,6 +394,100 @@ input, select { font-family: inherit; }
 }
 
 /* ============================================
+   TRENDING SECTION
+   ============================================ */
+.trending-section {
+  padding: 64px 0;
+  background: var(--bg-secondary);
+}
+
+/* ============================================
+   AD SLOTS
+   ============================================ */
+.ad-slot {
+  padding: 24px 0;
+  text-align: center;
+}
+
+.ad-slot-banner {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.ad-slot-product {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  margin: 20px 0 40px;
+}
+
+.ad-placeholder {
+  position: relative;
+  display: inline-block;
+  min-width: 300px;
+  min-height: 90px;
+  background: var(--bg-warm);
+  border: 1px dashed var(--border-warm);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.ad-slot-sidebar {
+  margin-top: 24px;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.ad-slot-sidebar .ad-placeholder {
+  width: 100%;
+  min-height: 250px;
+}
+
+/* ============================================
+   BIG CTA BUTTON — Product Page
+   ============================================ */
+.btn-shop-now {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 18px 32px;
+  background: linear-gradient(135deg, var(--accent-sage) 0%, var(--accent-sage-dark) 100%);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(122, 158, 126, 0.35);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.btn-shop-now:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(122, 158, 126, 0.45);
+  background: linear-gradient(135deg, var(--accent-sage-dark) 0%, #4a6e4e 100%);
+}
+
+.btn-shop-now:active {
+  transform: translateY(0);
+}
+
+/* ============================================
    CATEGORIES
    ============================================ */
 .categories-section { padding: 64px 0; }
