@@ -13,20 +13,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='35' fill='%237a9e7e'/><circle cx='50' cy='50' r='18' fill='%23fff'/><circle cx='50' cy='50' r='8' fill='%235a7e5e'/></svg>">
 </head>
 <body>
+  <!-- Animated Cotton Fabric Background -->
+  <div class="cotton-bg">
+    <div class="strand"></div>
+    <div class="strand"></div>
+    <div class="strand"></div>
+    <div class="strand"></div>
+    <div class="strand"></div>
+    <div class="strand"></div>
+  </div>
+
   <!-- Header -->
   <header class="header">
     <div class="container header-inner">
       <a href="/" class="logo">
-        <span class="logo-icon">🌿</span>
+        <div class="logo-mark"></div>
         <span class="logo-text">Cotton<span class="logo-accent">Finder</span></span>
       </a>
 
       <form class="header-search" action="/search" method="GET">
         <input type="text" name="q" placeholder="Search cotton products..." value="<%= typeof query !== 'undefined' ? query : '' %>">
-        <button type="submit">🔍</button>
+        <button type="submit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
       </form>
 
       <nav class="nav">
@@ -35,10 +47,11 @@
         <a href="/about" class="nav-link <%= currentPath === '/about' ? 'active' : '' %>">About</a>
       </nav>
 
-      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
 
-    <!-- Mobile menu -->
     <div class="mobile-menu" id="mobileMenu">
       <a href="/search">Browse Products</a>
       <a href="/why-cotton">Why Cotton</a>
@@ -57,7 +70,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/" class="logo">
-            <span class="logo-icon">🌿</span>
+            <div class="logo-mark"></div>
             <span class="logo-text">Cotton<span class="logo-accent">Finder</span></span>
           </a>
           <p class="footer-tagline">Find 100% cotton and almost-cotton products from top retailers. We help you shop smarter for natural, breathable, sustainable fabrics.</p>

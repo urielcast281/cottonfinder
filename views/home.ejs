@@ -60,7 +60,10 @@
 <!-- Trending Now -->
 <section class="trending-section">
   <div class="container">
-    <h2 class="section-title">🔥 Trending Now</h2>
+    <h2 class="section-title">
+      <svg class="section-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.1.2-2.2.6-3.3.7 3.7 4.5 4.5 5.4 1.2z"/></svg>
+      Trending Now
+    </h2>
     <p class="section-subtitle">The most popular cotton products our shoppers are loving right now</p>
 
     <div class="products-grid">
@@ -82,7 +85,10 @@
           <h3 class="product-name"><%= product.name %></h3>
           <div class="product-meta">
             <span class="product-price">$<%= product.price.toFixed(2) %></span>
-            <span class="product-rating">⭐ <%= product.rating %> (<%= product.reviews.toLocaleString() %>)</span>
+            <span class="product-rating">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853" stroke="#d4a853" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <%= product.rating %> (<%= product.reviews.toLocaleString() %>)
+            </span>
           </div>
           <div class="product-retailer">via <%= product.retailer %></div>
         </div>
@@ -97,11 +103,6 @@
   <div class="container">
     <div class="ad-placeholder">
       <span class="ad-label">Advertisement</span>
-      <!-- Adsterra or AdSense banner ad goes here -->
-      <ins class="adsbygoogle"
-           style="display:block; width:728px; height:90px; margin:0 auto;"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-           data-ad-slot="XXXXXXXXXX"></ins>
     </div>
   </div>
 </div>
@@ -112,22 +113,30 @@
     <h2 class="section-title">Shop by Category</h2>
     <div class="categories-grid">
       <a href="/search?category=clothing" class="category-card">
-        <div class="category-icon">👕</div>
+        <div class="category-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5" stroke-linecap="round"><path d="M20.38 3.4a2 2 0 0 0-2-2.4H5.62a2 2 0 0 0-2 2.4L2 8h20l.38-4.6z"/><path d="M2 8a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8z"/><path d="M10 10v8M14 10v8"/></svg>
+        </div>
         <h3>Clothing</h3>
         <p>T-shirts, jeans, underwear, socks & more</p>
       </a>
       <a href="/search?category=home" class="category-card">
-        <div class="category-icon">🏠</div>
+        <div class="category-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
         <h3>Home & Bedding</h3>
         <p>Sheets, towels, blankets & more</p>
       </a>
       <a href="/search?category=baby" class="category-card">
-        <div class="category-icon">👶</div>
+        <div class="category-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
         <h3>Baby</h3>
         <p>Onesies, swaddles & baby essentials</p>
       </a>
       <a href="/search?category=accessories" class="category-card">
-        <div class="category-icon">🎒</div>
+        <div class="category-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7a9e7e" stroke-width="1.5" stroke-linecap="round"><path d="M6 2h12a2 2 0 0 1 2 2v6a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6V4a2 2 0 0 1 2-2z"/><path d="M12 12v5"/></svg>
+        </div>
         <h3>Accessories</h3>
         <p>Bags, hats, bandanas & more</p>
       </a>
@@ -160,7 +169,10 @@
           <h3 class="product-name"><%= product.name %></h3>
           <div class="product-meta">
             <span class="product-price">$<%= product.price.toFixed(2) %></span>
-            <span class="product-rating">⭐ <%= product.rating %></span>
+            <span class="product-rating">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853" stroke="#d4a853" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <%= product.rating %>
+            </span>
           </div>
           <div class="product-retailer">via <%= product.retailer %></div>
         </div>
@@ -169,7 +181,7 @@
     </div>
 
     <div class="section-cta">
-      <a href="/search" class="btn btn-primary">Browse All Products →</a>
+      <a href="/search" class="btn btn-primary">Browse All Products</a>
     </div>
   </div>
 </section>
@@ -180,28 +192,36 @@
     <h2 class="section-title">Why Choose Cotton?</h2>
     <div class="why-grid">
       <div class="why-card">
-        <div class="why-icon">🌬️</div>
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 2v20"/><path d="M2 12h20"/><path d="m4.93 4.93 14.14 14.14"/><path d="m19.07 4.93-14.14 14.14"/></svg>
+        </div>
         <h3>Breathable</h3>
         <p>Cotton fibers allow air flow, keeping you cool in summer and warm in winter.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">🧴</div>
-        <h3>Hypoallergenic</h3>
-        <p>Natural cotton is gentle on sensitive skin and unlikely to cause irritation.</p>
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3>Gentle on Skin</h3>
+        <p>Natural cotton is hypoallergenic and unlikely to cause irritation.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">💪</div>
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </div>
         <h3>Durable</h3>
         <p>Cotton gets stronger when wet and lasts for years with proper care.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon">♻️</div>
+        <div class="why-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M7 19a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-7H7v7z"/><path d="M5 12a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2"/><path d="M10 12v-2a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/></svg>
+        </div>
         <h3>Sustainable</h3>
         <p>100% biodegradable. Organic cotton uses less water and no pesticides.</p>
       </div>
     </div>
     <div class="section-cta">
-      <a href="/why-cotton" class="btn btn-outline">Learn More About Cotton →</a>
+      <a href="/why-cotton" class="btn btn-outline">Learn More About Cotton</a>
     </div>
   </div>
 </section>
