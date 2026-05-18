@@ -9,6 +9,12 @@
     <div class="search-layout">
       <!-- Filters Sidebar -->
       <aside class="search-filters">
+        <!-- Clear All Filters at the TOP -->
+        <a href="/search" class="btn btn-outline btn-sm btn-clear-filters">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Clear All Filters
+        </a>
+
         <form action="/search" method="GET" id="filterForm">
           <% if (query) { %>
           <input type="hidden" name="q" value="<%= query %>">
@@ -85,18 +91,12 @@
               <option value="cotton" <%= filters.sort === 'cotton' ? 'selected' : '' %>>Highest Cotton %</option>
             </select>
           </div>
-
-          <a href="/search" class="btn btn-outline btn-sm">Clear All Filters</a>
         </form>
 
-        <!-- Ad Slot: Sidebar -->
+        <!-- Ad Slot: Sidebar (constrained) -->
         <div class="ad-slot ad-slot-sidebar">
           <div class="ad-placeholder">
             <span class="ad-label">Sponsored</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:250px; height:250px; margin:0 auto;"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="XXXXXXXXXX"></ins>
           </div>
         </div>
       </aside>
@@ -105,7 +105,9 @@
       <div class="search-results">
         <% if (results.length === 0) { %>
         <div class="no-results">
-          <div class="no-results-icon">🔍</div>
+          <div class="no-results-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9a8b7e" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
           <h3>No products found</h3>
           <p>Try adjusting your filters or search terms.</p>
           <a href="/search" class="btn btn-primary">Browse All Products</a>
@@ -131,7 +133,10 @@
               <p class="product-desc"><%= product.description.substring(0, 80) %>...</p>
               <div class="product-meta">
                 <span class="product-price">$<%= product.price.toFixed(2) %></span>
-                <span class="product-rating">⭐ <%= product.rating %> (<%= product.reviews.toLocaleString() %>)</span>
+                <span class="product-rating">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853" stroke="#d4a853" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <%= product.rating %> (<%= product.reviews.toLocaleString() %>)
+                </span>
               </div>
               <div class="product-retailer">via <%= product.retailer %></div>
             </div>

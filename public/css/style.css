@@ -1090,12 +1090,41 @@ input, select { font-family: inherit; }
   display: grid;
   grid-template-columns: 260px 1fr;
   gap: 36px;
+  align-items: start;
 }
 
 .search-filters {
   position: sticky;
   top: calc(var(--header-height) + 20px);
   align-self: start;
+  max-height: calc(100vh - var(--header-height) - 40px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.search-filters::-webkit-scrollbar {
+  width: 4px;
+}
+
+.search-filters::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.search-filters::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.btn-clear-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
 }
 
 .filter-group {
