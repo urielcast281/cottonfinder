@@ -32,7 +32,10 @@
         <h1 class="product-title"><%= product.name %></h1>
 
         <div class="product-rating-large">
-          <span class="stars">⭐ <%= product.rating %></span>
+          <span class="stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#d4a853" stroke="#d4a853" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <%= product.rating %>
+          </span>
           <span class="review-count"><%= product.reviews.toLocaleString() %> reviews</span>
         </div>
 
@@ -82,11 +85,7 @@
     <!-- Ad Slot: Below product detail -->
     <div class="ad-slot ad-slot-product">
       <div class="ad-placeholder">
-        <span class="="ad-label">Sponsored</span>
-        <ins class="adsbygoogle"
-             style="display:block; width:728px; height:90px; margin:0 auto;"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-             data-ad-slot="XXXXXXXXXX"></ins>
+        <span class="ad-label">Sponsored</span>
       </div>
     </div>
 
@@ -110,7 +109,10 @@
             <h3 class="product-name"><%= product.name %></h3>
             <div class="product-meta">
               <span class="product-price">$<%= product.price.toFixed(2) %></span>
-              <span class="product-rating">⭐ <%= product.rating %></span>
+              <span class="product-rating">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853" stroke="#d4a853" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <%= product.rating %>
+              </span>
             </div>
           </div>
         </a>

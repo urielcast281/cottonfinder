@@ -139,6 +139,5 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🌿 CottonFinder running on http://localhost:${PORT}`);
-  console.log(`   ${db.getStats().totalProducts} products loaded`);
+  // Server started
 });

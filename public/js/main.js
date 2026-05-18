@@ -30,7 +30,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 if ('loading' in HTMLImageElement.prototype) {
   // Native lazy loading supported
 } else {
-  // Fallback: load all images
   document.querySelectorAll('img[loading="lazy"]').forEach(img => {
     img.src = img.dataset.src || img.src;
   });
@@ -56,7 +55,3 @@ document.addEventListener('DOMContentLoaded', function() {
     if (id) trackProductView(id, productTitle.textContent);
   }
 });
-
-// Console branding
-console.log('%c 🌿 CottonFinder ', 'background: linear-gradient(45deg, #4ade80, #22c55e); color: #000; font-size: 16px; font-weight: bold; padding: 6px 12px; border-radius: 4px;');
-console.log('%c Find 100% cotton products from top retailers', 'color: #a0a0a0; font-size: 11px;');

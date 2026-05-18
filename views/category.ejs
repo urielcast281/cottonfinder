@@ -52,7 +52,9 @@
       <div class="search-results">
         <% if (products.length === 0) { %>
         <div class="no-results">
-          <div class="no-results-icon">🔍</div>
+          <div class="no-results-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9a8b7e" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
           <h3>No products found</h3>
           <p>Try a different category or adjust your filters.</p>
           <a href="/search" class="btn btn-primary">Browse All Products</a>
@@ -78,7 +80,10 @@
               <p class="product-desc"><%= product.description.substring(0, 80) %>...</p>
               <div class="product-meta">
                 <span class="product-price">$<%= product.price.toFixed(2) %></span>
-                <span class="product-rating">⭐ <%= product.rating %> (<%= product.reviews.toLocaleString() %>)</span>
+                <span class="product-rating">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853" stroke="#d4a853" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  <%= product.rating %> (<%= product.reviews.toLocaleString() %>)
+                </span>
               </div>
               <div class="product-retailer">via <%= product.retailer %></div>
             </div>

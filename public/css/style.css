@@ -1431,6 +1431,13 @@ input, select { font-family: inherit; }
   font-weight: 700;
   margin-bottom: 14px;
   color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.h2-icon {
+  flex-shrink: 0;
 }
 
 .content-section p {
