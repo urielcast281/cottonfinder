@@ -91,6 +91,11 @@
               <option value="cotton" <%= filters.sort === 'cotton' ? 'selected' : '' %>>Highest Cotton %</option>
             </select>
           </div>
+
+          <!-- Without JS the auto-submitting controls above still need a way to apply -->
+          <noscript>
+            <button type="submit" class="btn btn-sm btn-primary">Apply Filters</button>
+          </noscript>
         </form>
 
         <!-- Ad Slot: Sidebar (constrained) -->

@@ -69,7 +69,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -3;
+  z-index: -4;   /* base gradient */
   background:
     radial-gradient(ellipse at 15% 30%, rgba(221, 211, 200, 0.6) 0%, transparent 60%),
     radial-gradient(ellipse at 85% 15%, rgba(235, 225, 213, 0.7) 0%, transparent 55%),
@@ -88,7 +88,7 @@ body::before {
 .scene {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -3;   /* animated field scene */
   overflow: hidden;
   pointer-events: none;
 }
@@ -389,7 +389,7 @@ body::after {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  z-index: -1;
+  z-index: -2;   /* soft fold shadows */
   pointer-events: none;
   background:
     linear-gradient(135deg, transparent 0%, rgba(200, 188, 170, 0.08) 25%, transparent 50%),
@@ -803,7 +803,6 @@ input, select { font-family: inherit; }
 
 .ad-placeholder {
   position: relative;
-  display: inline-block;
   min-width: 300px;
   min-height: 90px;
   background: var(--bg-warm);
@@ -832,6 +831,8 @@ input, select { font-family: inherit; }
 
 .ad-slot-sidebar .ad-placeholder {
   width: 100%;
+  /* sidebar is narrower than the 300px default — don't overflow it */
+  min-width: 0;
   min-height: 250px;
 }
 
@@ -1778,6 +1779,108 @@ input, select { font-family: inherit; }
 }
 
 /* ============================================
+   WOVEN FABRIC TEXTURE
+   Directional fiber grain, like cotton / raw silk.
+   Three intensities — set the variant class on <body>:
+     texture-whisper  · barely-there grain
+     texture-linen    · balanced weave (default)
+     texture-raw-silk · pronounced slubby grain
+   Pure inline SVG (~1KB, no network request, no layout shift).
+   ============================================ */
+.fabric-texture {
+  position: fixed;
+  inset: 0;
+  z-index: -1;   /* woven texture — closest layer to the content */
+  pointer-events: none;
+  /* Warm the grain slightly so it reads as natural fibre, not grey noise */
+  background-color: transparent;
+  mix-blend-mode: multiply;
+}
+
+/* --- Option 1: Whisper (subtlest) --- */
+.texture-whisper .fabric-texture {
+  opacity: 0.30;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75 0.035' numOctaves='2' seed='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23w)' opacity='0.22'/%3E%3C/svg%3E");
+}
+
+/* --- Option 2: Linen (default, balanced) --- */
+.texture-linen .fabric-texture {
+  opacity: 0.42;
+  background-image:
+    /* warp threads — vertical */
+    repeating-linear-gradient(90deg,
+      transparent 0 3px, rgba(150, 132, 108, 0.045) 3px 4px),
+    /* weft threads — horizontal */
+    repeating-linear-gradient(0deg,
+      transparent 0 3px, rgba(150, 132, 108, 0.035) 3px 4px),
+    /* fibre grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85 0.04' numOctaves='3' seed='9'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23l)' opacity='0.30'/%3E%3C/svg%3E");
+}
+
+/* --- Option 3: Raw Silk (most tactile) --- */
+.texture-raw-silk .fabric-texture {
+  opacity: 0.55;
+  background-image:
+    repeating-linear-gradient(90deg,
+      transparent 0 5px, rgba(146, 126, 100, 0.05) 5px 6px),
+    /* irregular slubs across the weave */
+    repeating-linear-gradient(0deg,
+      transparent 0 11px, rgba(146, 126, 100, 0.04) 11px 13px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.028' numOctaves='4' seed='11'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23s)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+/* ============================================
+   FOCUS VISIBILITY (keyboard navigation)
+   ============================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent-sage-dark);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Inputs sit inside pill wrappers that already show a focus ring, so keep
+   the outline tight to the wrapper rather than doubling up */
+.header-search input:focus-visible,
+.hero-search input:focus-visible,
+.cta-search input:focus-visible {
+  outline-offset: -2px;
+}
+
+/* Solid-fill buttons need a light ring to stay visible against sage */
+.btn-primary:focus-visible,
+.btn-shop-now:focus-visible,
+.back-to-top:focus-visible,
+.hero-search button:focus-visible,
+.cta-search button:focus-visible {
+  outline-color: var(--text-primary);
+}
+
+/* Category links in the sidebar filter panel */
+.filter-link {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+
+.filter-link:hover { color: var(--accent-sage); }
+
+/* Inline links inside prose content */
+.content-link {
+  color: var(--accent-sage-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.content-link:hover { color: var(--accent-sage); }
+
+/* ============================================
    SCROLL REVEAL + MICRO-INTERACTIONS
    ============================================ */
 .reveal-on .product-card,
@@ -1878,6 +1981,50 @@ input, select { font-family: inherit; }
   .nav { display: none; }
   .mobile-menu-btn { display: block; }
   .header-search { display: none; }
+
+  /* Tap targets: minimum 44x44 on touch screens (desktop spacing unchanged) */
+  .mobile-menu-btn {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-quick-links a,
+  .pill,
+  .tag {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer-links a,
+  .filter-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumb {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .breadcrumb a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .logo {
+    min-height: 44px;
+  }
+
+  .btn,
+  .btn-sm {
+    min-height: 44px;
+  }
 
   .hero { padding: 52px 0 40px; }
   .hero-title { font-size: 2.2rem; }

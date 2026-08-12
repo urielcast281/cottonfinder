@@ -57,16 +57,30 @@ app.get('/search', (req, res) => {
   });
 });
 
-// Category page
+// Category page — filters stay on the category URL so users never lose their place
 app.get('/category/:category', (req, res) => {
   const category = req.params.category;
-  const products = db.getProductsByCategory(category);
   const categories = db.getCategories();
+
+  // Unknown category should 404 rather than render an empty page
+  if (!categories.includes(category)) {
+    return res.status(404).render('error', {
+      error: { status: 404, message: 'Category not found' },
+      title: 'Not Found — CottonFinder'
+    });
+  }
+
+  const { subcategory, cottonMin, organic, priceMin, priceMax, retailer, sort } = req.query;
+  const filters = { category, subcategory, cottonMin, organic, priceMin, priceMax, retailer, sort };
+  const products = db.searchProducts('', filters);
+  const retailers = db.getRetailers();
 
   res.render('category', {
     category,
     products,
     categories,
+    retailers,
+    filters,
     productCount: products.length,
     title: `${category.charAt(0).toUpperCase() + category.slice(1)} — CottonFinder`
   });

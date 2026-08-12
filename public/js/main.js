@@ -51,13 +51,15 @@ function trackProductView(productId, productName) {
   } catch (e) { /* ignore */ }
 }
 
-// Track product views on product pages
+// Track product views on product pages.
+// Read the id from the URL — scraping the first /product/ link on the page
+// would pick up a *related* product instead of the one being viewed.
 document.addEventListener('DOMContentLoaded', function() {
   const productTitle = document.querySelector('.product-title');
-  const productLink = document.querySelector('a[href^="/product/"]');
-  if (productTitle && productLink) {
-    const id = productLink.href.split('/product/')[1];
-    if (id) trackProductView(id, productTitle.textContent);
+  if (!productTitle) return;
+  const match = window.location.pathname.match(/^\/product\/([^/?#]+)/);
+  if (match && match[1]) {
+    trackProductView(decodeURIComponent(match[1]), productTitle.textContent.trim());
   }
 });
 

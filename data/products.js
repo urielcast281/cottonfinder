@@ -14,7 +14,8 @@ const products = [
     price: 24.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B08N5KWB9H?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=Classic%20100%25%20Cotton%20T-Shirt&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Comfort Colors",
     tags: ["organic", "basics", "mens", "womens", "casual"],
@@ -54,7 +55,8 @@ const products = [
     price: 34.00,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600",
-    affiliateUrl: "https://www.target.com/p/supima-cotton-v-neck-tee/-/A-12345678?tag=cottonfinder-20",
+    affiliateUrl: "https://www.target.com/s?searchTerm=Supima%20Cotton%20V-Neck%20T-Shirt", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Target",
     brand: "Goodfellow & Co",
     tags: ["supima", "v-neck", "mens", "premium", "smooth"],
@@ -113,7 +115,8 @@ const products = [
     price: 189.00,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B08N5KWB9H?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=100%25%20Cotton%20Selvedge%20Denim%20Jeans&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Unbranded",
     tags: ["selvedge", "raw", "denim", "mens", "japanese", "premium"],
@@ -152,7 +155,8 @@ const products = [
     price: 59.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1584370848010-d7cc81e6e2c6?w=600",
-    affiliateUrl: "https://www.walmart.com/ip/Levis-501-Original-Fit-Jeans/123456789?tag=cottonfinder-20",
+    affiliateUrl: "https://www.walmart.com/search?q=Classic%20Straight%20Leg%20Jeans", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Walmart",
     brand: "Levi's",
     tags: ["classic", "straight", "rigid", "mens", "501"],
@@ -212,7 +216,8 @@ const products = [
     price: 18.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B07CVF3Q2R?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=100%25%20Cotton%20Crew%20Socks%20(6-Pack)&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Dickies",
     tags: ["socks", "crew", "mens", "cushioned", "6-pack"],
@@ -233,7 +238,8 @@ const products = [
     price: 79.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B08N5KWB9H?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=100%25%20Cotton%20Turkish%20Bath%20Towel%20Set&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Coyuchi",
     tags: ["turkish", "bath", "luxury", "set", "700gsm"],
@@ -274,7 +280,8 @@ const products = [
     price: 129.00,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B08N5KWB9H?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=100%25%20Cotton%20Percale%20Sheet%20Set&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Brooklinen",
     tags: ["percale", "sheets", "cooling", "300tc", "queen", "king"],
@@ -312,7 +319,8 @@ const products = [
     price: 49.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600",
-    affiliateUrl: "https://www.target.com/p/cotton-muslin-throw-blanket/-/A-12345678?tag=cottonfinder-20",
+    affiliateUrl: "https://www.target.com/s?searchTerm=100%25%20Cotton%20Muslin%20Throw%20Blanket", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Target",
     brand: "Threshold",
     tags: ["muslin", "throw", "blanket", "lightweight", "layering"],
@@ -333,7 +341,8 @@ const products = [
     price: 24.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B08N5KWB9H?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=Organic%20Cotton%20Baby%20Onesie%20(3-Pack)&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Burt's Bees Baby",
     tags: ["organic", "baby", "onesie", "gots", "3-pack", "newborn"],
@@ -353,7 +362,8 @@ const products = [
     price: 34.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B07CVF3Q2R?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=100%25%20Cotton%20Muslin%20Swaddle%20Blankets%20(4-Pack)&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Aden + Anais",
     tags: ["muslin", "swaddle", "baby", "4-pack", "breathable"],
@@ -374,7 +384,8 @@ const products = [
     price: 19.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B08N5KWB9H?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=100%25%20Cotton%20Canvas%20Tote%20Bag&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Baggu",
     tags: ["tote", "canvas", "bags", "everyday", "durable"],
@@ -412,7 +423,8 @@ const products = [
     price: 12.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B07CVF3Q2R?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=100%25%20Cotton%20Bandana%20(3-Pack)&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Levi's",
     tags: ["bandana", "accessories", "unisex", "3-pack", "classic"],
@@ -433,7 +445,8 @@ const products = [
     price: 69.50,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B08N5KWB9H?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=100%25%20Cotton%20Oxford%20Button-Down%20Shirt&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Brooks Brothers",
     tags: ["oxford", "button-down", "mens", "formal", "classic"],
@@ -472,7 +485,8 @@ const products = [
     price: 59.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600",
-    affiliateUrl: "https://www.target.com/p/cotton-linen-summer-shirt/-/A-12345678?tag=cottonfinder-20",
+    affiliateUrl: "https://www.target.com/s?searchTerm=Cotton-Linen%20Blend%20Summer%20Shirt", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Target",
     brand: "Goodfellow & Co",
     tags: ["linen", "blend", "summer", "mens", "breathable", "camp-collar"],
@@ -491,7 +505,8 @@ const products = [
     price: 54.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B08N5KWB9H?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=100%25%20Cotton%20Pajama%20Set&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "L.L.Bean",
     tags: ["pajamas", "sleepwear", "womens", "set", "classic"],
@@ -510,7 +525,8 @@ const products = [
     price: 34.99,
     currency: "USD",
     image: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600",
-    affiliateUrl: "https://www.amazon.com/dp/B07CVF3Q2R?tag=cottonfinder-20",
+    affiliateUrl: "https://www.amazon.com/s?k=95%25%20Cotton%20%2F%205%25%20Spandex%20Leggings&tag=cottonfinder-20", // TODO: replace with real affiliate link
+    affiliatePlaceholder: true,
     retailer: "Amazon",
     brand: "Hanes",
     tags: ["leggings", "womens", "stretch", "high-waist", "casual"],
@@ -547,7 +563,9 @@ function getTrendingProducts() {
 }
 
 function searchProducts(query, filters = {}) {
-  let results = products;
+  // Copy first: sorting below runs in place and would otherwise permanently
+  // reorder the shared product list for every later request.
+  let results = products.slice();
 
   // Text search
   if (query) {
