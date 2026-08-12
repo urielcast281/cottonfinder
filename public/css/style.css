@@ -69,7 +69,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2;
+  z-index: -4;   /* base gradient */
   background:
     radial-gradient(ellipse at 15% 30%, rgba(221, 211, 200, 0.6) 0%, transparent 60%),
     radial-gradient(ellipse at 85% 15%, rgba(235, 225, 213, 0.7) 0%, transparent 55%),
@@ -79,154 +79,308 @@ body::before {
     linear-gradient(170deg, #f8f4ee 0%, #f2ece4 30%, #ebe3d8 60%, #e8dfd4 100%);
 }
 
-/* Animated cotton strands / fibers */
-.cotton-bg {
+/* ──────────────────────────────────────────
+   COTTON FIELD SCENE
+   A breezy field by the mountains: drifting
+   clouds, cotton sheets drying on the line,
+   cotton plants nodding, tufts on the wind.
+   ────────────────────────────────────────── */
+.scene {
   position: fixed;
+  inset: 0;
+  z-index: -3;   /* animated field scene */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Sky wash — warm cream up top fading to field green */
+.scene .sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #fbf6ee 0%,
+    #f8f1e7 26%,
+    #f2ede1 46%,
+    #ebeede 62%,
+    #e6ecda 72%
+  );
+}
+
+/* Soft sun glow */
+.scene .sun {
+  position: absolute;
+  top: 11%;
+  right: 15%;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(246, 233, 203, 0.95) 0%,
+    rgba(232, 204, 142, 0.45) 38%,
+    rgba(232, 204, 142, 0) 70%);
+  animation: sunGlow 9s ease-in-out infinite;
+}
+
+@keyframes sunGlow {
+  0%, 100% { transform: scale(1);    opacity: 0.85; }
+  50%      { transform: scale(1.08); opacity: 1; }
+}
+
+/* Drifting clouds */
+.scene .cloud {
+  position: absolute;
+  background: #fdfbf7;
+  border-radius: 50%;
+  filter: blur(2px);
+}
+.scene .cloud::before,
+.scene .cloud::after {
+  content: '';
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+.scene .cloud-1 {
+  top: 13%; left: -16%;
+  width: 120px; height: 38px;
+  opacity: 0.85;
+  animation: cloudDrift 72s linear infinite;
+}
+.scene .cloud-1::before { width: 60px; height: 60px; top: -26px; left: 18px; }
+.scene .cloud-1::after  { width: 48px; height: 48px; top: -18px; left: 62px; }
+
+.scene .cloud-2 {
+  top: 24%; left: -28%;
+  width: 92px; height: 30px;
+  opacity: 0.6;
+  animation: cloudDrift 98s linear infinite;
+  animation-delay: -34s;
+}
+.scene .cloud-2::before { width: 46px; height: 46px; top: -22px; left: 14px; }
+.scene .cloud-2::after  { width: 36px; height: 36px; top: -14px; left: 48px; }
+
+.scene .cloud-3 {
+  top: 7%; left: -22%;
+  width: 72px; height: 24px;
+  opacity: 0.5;
+  animation: cloudDrift 124s linear infinite;
+  animation-delay: -70s;
+}
+.scene .cloud-3::before { width: 36px; height: 36px; top: -16px; left: 12px; }
+.scene .cloud-3::after  { width: 28px; height: 28px; top: -10px; left: 38px; }
+
+@keyframes cloudDrift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(138vw); }
+}
+
+/* Distant mountains */
+.scene .mountains {
+  position: absolute;
+  bottom: 28%;
+  left: 0;
+  width: 100%;
+  height: 44%;
+}
+.scene .mtn-far  { fill: #cdd5c4; opacity: 0.5; }
+.scene .mtn-near { fill: #aebca0; opacity: 0.6; }
+.scene .mtn-snow { fill: #f4f4ec; opacity: 0.85; }
+
+/* Rolling field */
+.scene .field-hills {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 34%;
+}
+.scene .hill-back  { fill: #c5d0a8; opacity: 0.7; }
+.scene .hill-front { fill: #b2c192; opacity: 0.75; }
+
+/* Cotton plants nodding along the field */
+.scene .cotton-field {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 24%;
+}
+.scene .plant {
+  position: absolute;
+  bottom: 3%;
+  width: 4px;
+  height: 62px;
+  background: linear-gradient(to top, #6f9166, #88aa79);
+  border-radius: 3px;
+  transform-origin: bottom center;
+  animation: plantSway 6s ease-in-out infinite;
+}
+/* the cotton boll cluster on top */
+.scene .plant::before {
+  content: '';
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: #fefdfb;
+  box-shadow:
+    -8px  3px 0 -1px #faf7f1,
+     8px  3px 0 -1px #faf7f1,
+    -5px -5px 0 -1px #ffffff,
+     5px -5px 0 -1px #ffffff,
+     0   -2px 0  0   #ffffff,
+     0    4px 7px rgba(61, 50, 41, 0.06);
+}
+/* a leaf partway down the stem */
+.scene .plant::after {
+  content: '';
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  width: 16px;
+  height: 9px;
+  background: #7d9e72;
+  border-radius: 0 80% 0 80%;
+  transform: translateX(-2px) rotate(-22deg);
+  opacity: 0.85;
+}
+.scene .plant:nth-child(1) { left:  6%; height: 54px; opacity: 0.9;  animation-duration: 6.5s; animation-delay: -0.4s; }
+.scene .plant:nth-child(2) { left: 17%; height: 66px;               animation-duration: 5.6s; animation-delay: -1.8s; }
+.scene .plant:nth-child(3) { left: 28%; height: 48px; opacity: 0.85; animation-duration: 7.2s; animation-delay: -0.9s; }
+.scene .plant:nth-child(4) { left: 39%; height: 70px;               animation-duration: 6.0s; animation-delay: -2.6s; }
+.scene .plant:nth-child(5) { left: 52%; height: 56px; opacity: 0.9;  animation-duration: 6.8s; animation-delay: -1.2s; }
+.scene .plant:nth-child(6) { left: 64%; height: 64px;               animation-duration: 5.8s; animation-delay: -3.1s; }
+.scene .plant:nth-child(7) { left: 76%; height: 50px; opacity: 0.85; animation-duration: 7.0s; animation-delay: -0.6s; }
+.scene .plant:nth-child(8) { left: 88%; height: 60px;               animation-duration: 6.3s; animation-delay: -2.2s; }
+
+@keyframes plantSway {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50%      { transform: rotate(2.5deg); }
+}
+
+/* Clothesline with cotton sheets drying in the breeze */
+.scene .clothesline {
+  position: absolute;
+  top: 45%;
+  left: 7%;
+  width: 86%;
+  height: 120px;
+}
+.scene .clothesline .line {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
-  overflow: visible;
+  height: 2px;
+  background: linear-gradient(to right,
+    transparent 0%, #97897a 5%, #8a7c6d 50%, #97897a 95%, transparent 100%);
+  border-radius: 2px;
 }
-
-.cotton-bg .strand {
+.scene .sheet {
   position: absolute;
-  border-radius: 50% 40% 60% 40%;
-  animation: cottonFloat 18s ease-in-out infinite;
+  top: 0;
+  width: 78px;
+  height: 96px;
+  border-radius: 3px 3px 9px 9px;
+  transform-origin: top center;
   box-shadow:
-    inset 0 -20px 40px rgba(61, 50, 41, 0.04),
-    0 8px 32px rgba(61, 50, 41, 0.06);
+    inset -9px 0 16px rgba(61, 50, 41, 0.06),
+    inset  9px 0 16px rgba(255, 255, 255, 0.45),
+    0 9px 20px rgba(61, 50, 41, 0.07);
+  animation: sheetSway 6s ease-in-out infinite;
 }
-
-.cotton-bg .strand:nth-child(1) {
-  width: 700px; height: 500px;
-  background:
-    radial-gradient(ellipse at 30% 40%, rgba(232, 222, 208, 0.9) 0%, rgba(225, 215, 198, 0.6) 40%, transparent 70%),
-    linear-gradient(135deg, rgba(240, 232, 220, 0.5) 0%, rgba(220, 208, 190, 0.4) 100%);
-  top: -8%; left: -8%;
-  animation-duration: 22s;
-  animation-delay: 0s;
-  border-radius: 60% 40% 55% 45%;
-}
-
-.cotton-bg .strand:nth-child(2) {
-  width: 600px; height: 450px;
-  background:
-    radial-gradient(ellipse at 60% 35%, rgba(238, 228, 215, 0.85) 0%, rgba(230, 218, 202, 0.5) 40%, transparent 70%),
-    linear-gradient(160deg, rgba(242, 235, 225, 0.6) 0%, rgba(222, 210, 192, 0.4) 100%);
-  top: 25%; right: -12%;
-  animation-duration: 28s;
-  animation-delay: -4s;
-  border-radius: 45% 55% 40% 60%;
-}
-
-.cotton-bg .strand:nth-child(3) {
-  width: 550px; height: 380px;
-  background:
-    radial-gradient(ellipse at 45% 55%, rgba(225, 212, 196, 0.8) 0%, rgba(218, 205, 188, 0.5) 40%, transparent 70%),
-    linear-gradient(120deg, rgba(235, 225, 210, 0.5) 0%, rgba(215, 200, 182, 0.4) 100%);
-  bottom: -5%; left: 15%;
-  animation-duration: 20s;
-  animation-delay: -8s;
-  border-radius: 55% 45% 60% 40%;
-}
-
-.cotton-bg .strand:nth-child(4) {
-  width: 480px; height: 600px;
-  background:
-    radial-gradient(ellipse at 40% 60%, rgba(235, 226, 212, 0.8) 0%, rgba(228, 216, 200, 0.5) 40%, transparent 70%),
-    linear-gradient(140deg, rgba(240, 232, 218, 0.6) 0%, rgba(218, 206, 188, 0.4) 100%);
-  top: 5%; left: 35%;
-  animation-duration: 32s;
-  animation-delay: -2s;
-  border-radius: 40% 60% 45% 55%;
-}
-
-.cotton-bg .strand:nth-child(5) {
-  width: 500px; height: 350px;
-  background:
-    radial-gradient(ellipse at 55% 45%, rgba(220, 208, 192, 0.75) 0%, rgba(212, 198, 180, 0.5) 40%, transparent 70%),
-    linear-gradient(150deg, rgba(232, 222, 208, 0.5) 0%, rgba(210, 196, 178, 0.4) 100%);
-  bottom: 15%; right: 8%;
-  animation-duration: 26s;
-  animation-delay: -10s;
-  border-radius: 50% 50% 55% 45%;
-}
-
-.cotton-bg .strand:nth-child(6) {
-  width: 420px; height: 420px;
-  background:
-    radial-gradient(ellipse at 50% 50%, rgba(242, 234, 222, 0.9) 0%, rgba(235, 225, 210, 0.6) 40%, transparent 70%),
-    linear-gradient(130deg, rgba(245, 238, 228, 0.5) 0%, rgba(225, 215, 198, 0.3) 100%);
-  top: 45%; left: 55%;
-  animation-duration: 24s;
-  animation-delay: -6s;
-  border-radius: 48% 52% 46% 54%;
-}
-
-.cotton-bg .strand:nth-child(7) {
-  width: 380px; height: 280px;
-  background:
-    radial-gradient(ellipse at 35% 60%, rgba(228, 216, 200, 0.7) 0%, rgba(220, 206, 188, 0.5) 40%, transparent 70%);
-  top: 60%; left: -5%;
-  animation-duration: 30s;
-  animation-delay: -12s;
-  border-radius: 55% 45% 50% 50%;
-}
-
-.cotton-bg .strand:nth-child(8) {
-  width: 340px; height: 500px;
-  background:
-    radial-gradient(ellipse at 60% 40%, rgba(232, 220, 205, 0.7) 0%, rgba(222, 208, 190, 0.5) 40%, transparent 70%);
-  top: -5%; right: 25%;
-  animation-duration: 35s;
-  animation-delay: -14s;
-  border-radius: 42% 58% 48% 52%;
-}
-
-@keyframes cottonFloat {
-  0%, 100% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-  }
-  20% {
-    transform: translate(40px, -25px) scale(1.08) rotate(3deg);
-  }
-  40% {
-    transform: translate(-30px, 20px) scale(0.94) rotate(-2deg);
-  }
-  60% {
-    transform: translate(25px, 35px) scale(1.05) rotate(2deg);
-  }
-  80% {
-    transform: translate(-20px, -15px) scale(0.97) rotate(-1deg);
-  }
-}
-
-/* Fabric weave texture overlay — more visible */
-.cotton-bg::after {
+/* clothes pin */
+.scene .sheet::before {
   content: '';
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  opacity: 0.4;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 3px,
-      rgba(200, 188, 170, 0.07) 3px,
-      rgba(200, 188, 170, 0.07) 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 3px,
-      rgba(200, 188, 170, 0.07) 3px,
-      rgba(200, 188, 170, 0.07) 4px
-    );
-  pointer-events: none;
+  top: -5px;
+  left: 50%;
+  width: 7px;
+  height: 13px;
+  margin-left: -3.5px;
+  background: #b9895f;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(61, 50, 41, 0.15);
+}
+/* soft fabric folds */
+.scene .sheet::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: repeating-linear-gradient(96deg,
+    transparent 0 13px, rgba(61, 50, 41, 0.035) 13px 14px);
+}
+.scene .sheet:nth-child(2) { left:  3%; width: 80px; height: 100px; background: #fefdfb; animation-duration: 6.4s; animation-delay: -0.5s; }
+.scene .sheet:nth-child(3) { left: 22%; width: 72px; height: 88px;  background: #f6eedf; animation-duration: 5.6s; animation-delay: -1.9s; }
+.scene .sheet:nth-child(4) { left: 41%; width: 84px; height: 104px; background: #f0f1e6; animation-duration: 7.0s; animation-delay: -1.1s; }
+.scene .sheet:nth-child(5) { left: 60%; width: 70px; height: 86px;  background: #f7ece9; animation-duration: 6.0s; animation-delay: -2.7s; }
+.scene .sheet:nth-child(6) { left: 78%; width: 78px; height: 96px;  background: #fbf5e8; animation-duration: 6.7s; animation-delay: -0.8s; }
+
+@keyframes sheetSway {
+  0%, 100% { transform: rotate(-2.5deg) skewX(1.5deg); }
+  30%      { transform: rotate(1.5deg)  skewX(-2deg); }
+  60%      { transform: rotate(3deg)    skewX(2deg); }
+}
+
+/* Cotton tufts drifting across on the wind */
+.scene .tufts { position: absolute; inset: 0; }
+.scene .tuft {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    -6px  1px 0 -1px rgba(255, 255, 255, 0.92),
+     6px  1px 0 -1px rgba(255, 255, 255, 0.92),
+     0   -5px 0 -1px rgba(255, 255, 255, 0.92),
+    -4px -3px 0 -2px #ffffff,
+     4px -3px 0 -2px #ffffff;
+  filter: drop-shadow(0 2px 3px rgba(61, 50, 41, 0.07));
+  opacity: 0;
+  animation: tuftDrift linear infinite;
+}
+.scene .tuft:nth-child(1)  { top: 12%; --ts: 1;    animation-duration: 26s; animation-delay:   0s; }
+.scene .tuft:nth-child(2)  { top: 22%; --ts: 0.7;  animation-duration: 34s; animation-delay:  -4s; }
+.scene .tuft:nth-child(3)  { top: 34%; --ts: 1.2;  animation-duration: 22s; animation-delay:  -9s; }
+.scene .tuft:nth-child(4)  { top: 44%; --ts: 0.6;  animation-duration: 40s; animation-delay: -15s; }
+.scene .tuft:nth-child(5)  { top: 56%; --ts: 1;    animation-duration: 30s; animation-delay:  -2s; }
+.scene .tuft:nth-child(6)  { top: 66%; --ts: 0.8;  animation-duration: 36s; animation-delay: -20s; }
+.scene .tuft:nth-child(7)  { top: 18%; --ts: 1.1;  animation-duration: 24s; animation-delay: -12s; }
+.scene .tuft:nth-child(8)  { top: 30%; --ts: 0.65; animation-duration: 44s; animation-delay:  -6s; }
+.scene .tuft:nth-child(9)  { top: 50%; --ts: 0.9;  animation-duration: 28s; animation-delay: -24s; }
+.scene .tuft:nth-child(10) { top: 62%; --ts: 1.3;  animation-duration: 21s; animation-delay: -17s; }
+.scene .tuft:nth-child(11) { top: 8%;  --ts: 0.75; animation-duration: 38s; animation-delay: -30s; }
+.scene .tuft:nth-child(12) { top: 72%; --ts: 0.85; animation-duration: 32s; animation-delay:  -7s; }
+
+@keyframes tuftDrift {
+  0%   { transform: translate(-8vw, 0)      rotate(0deg)   scale(var(--ts, 1)); opacity: 0; }
+  6%   { opacity: 0.85; }
+  50%  { transform: translate(50vw, -28px)  rotate(160deg) scale(var(--ts, 1)); }
+  94%  { opacity: 0.85; }
+  100% { transform: translate(116vw, 18px)  rotate(320deg) scale(var(--ts, 1)); opacity: 0; }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scene .sun,
+  .scene .cloud,
+  .scene .plant,
+  .scene .sheet,
+  .scene .tuft {
+    animation: none;
+  }
+  .scene .tuft {
+    opacity: 0.6;
+    transform: scale(var(--ts, 1));
+  }
+  .scene .tuft:nth-child(odd)  { left: 18%; }
+  .scene .tuft:nth-child(even) { left: 68%; }
 }
 
 /* Soft fold / crease shadows across the page */
@@ -235,7 +389,7 @@ body::after {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  z-index: -1;
+  z-index: -2;   /* soft fold shadows */
   pointer-events: none;
   background:
     linear-gradient(135deg, transparent 0%, rgba(200, 188, 170, 0.08) 25%, transparent 50%),
@@ -649,7 +803,6 @@ input, select { font-family: inherit; }
 
 .ad-placeholder {
   position: relative;
-  display: inline-block;
   min-width: 300px;
   min-height: 90px;
   background: var(--bg-warm);
@@ -678,6 +831,8 @@ input, select { font-family: inherit; }
 
 .ad-slot-sidebar .ad-placeholder {
   width: 100%;
+  /* sidebar is narrower than the 300px default — don't overflow it */
+  min-width: 0;
   min-height: 250px;
 }
 
@@ -1624,6 +1779,228 @@ input, select { font-family: inherit; }
 }
 
 /* ============================================
+   WOVEN FABRIC TEXTURE
+   Directional fiber grain, like cotton / raw silk.
+   Three intensities — set the variant class on <body>:
+     texture-whisper  · barely-there grain
+     texture-linen    · balanced weave (default)
+     texture-raw-silk · pronounced slubby grain
+   Pure inline SVG (~1KB, no network request, no layout shift).
+   ============================================ */
+.fabric-texture {
+  position: fixed;
+  inset: 0;
+  z-index: -1;   /* woven texture — closest layer to the content */
+  pointer-events: none;
+  /* Warm the grain slightly so it reads as natural fibre, not grey noise */
+  background-color: transparent;
+  mix-blend-mode: multiply;
+}
+
+/* --- Option 1: Whisper (subtlest) --- */
+.texture-whisper .fabric-texture {
+  opacity: 0.30;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75 0.035' numOctaves='2' seed='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23w)' opacity='0.22'/%3E%3C/svg%3E");
+}
+
+/* --- Option 2: Linen (default, balanced) --- */
+.texture-linen .fabric-texture {
+  opacity: 0.42;
+  background-image:
+    /* warp threads — vertical */
+    repeating-linear-gradient(90deg,
+      transparent 0 3px, rgba(150, 132, 108, 0.045) 3px 4px),
+    /* weft threads — horizontal */
+    repeating-linear-gradient(0deg,
+      transparent 0 3px, rgba(150, 132, 108, 0.035) 3px 4px),
+    /* fibre grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85 0.04' numOctaves='3' seed='9'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23l)' opacity='0.30'/%3E%3C/svg%3E");
+}
+
+/* --- Option 3: Raw Silk (most tactile, warm) --- */
+.texture-raw-silk .fabric-texture {
+  opacity: 0.55;
+  background-image:
+    repeating-linear-gradient(90deg,
+      transparent 0 5px, rgba(146, 126, 100, 0.05) 5px 6px),
+    /* irregular slubs across the weave */
+    repeating-linear-gradient(0deg,
+      transparent 0 11px, rgba(146, 126, 100, 0.04) 11px 13px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.028' numOctaves='4' seed='11'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23s)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+/* --- Option 4: Marble Silk --- */
+/* Raw-silk fibre grain in a marble colourway: cool stone veining drifting
+   through the weave, kept pale so it reads as polished stone, not noise. */
+.texture-marble .fabric-texture {
+  opacity: 0.62;
+  background-image:
+    /* soft cloudy veining — low frequency turbulence reads as stone */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='v'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.021' numOctaves='5' seed='23'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.55' intercept='-0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23v)' opacity='0.55'/%3E%3C/svg%3E"),
+    /* fine warp threads, cool grey */
+    repeating-linear-gradient(90deg,
+      transparent 0 5px, rgba(122, 128, 138, 0.042) 5px 6px),
+    /* slubs across the weave */
+    repeating-linear-gradient(0deg,
+      transparent 0 11px, rgba(122, 128, 138, 0.032) 11px 13px),
+    /* raw-silk fibre grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.028' numOctaves='4' seed='11'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23m)' opacity='0.34'/%3E%3C/svg%3E");
+}
+
+/* Marble's stone veining sits darker than the warm weave, so deepen the
+   secondary/muted copy to keep comfortable WCAG AA headroom on it */
+.texture-marble {
+  --text-secondary: #5d5046;
+  --text-muted: #7d7065;
+}
+
+/* Marble reads as cool stone, so cool the warm field scene behind it
+   and lift the page toward an alabaster base */
+.texture-marble .scene .sky {
+  background: linear-gradient(to bottom,
+    #fbfbfc 0%, #f6f7f8 26%, #f1f2f3 46%, #edeff0 62%, #e8ebea 72%);
+}
+
+.texture-marble .scene .hill-back  { fill: #cfd6cd; opacity: 0.55; }
+.texture-marble .scene .hill-front { fill: #bcc6bb; opacity: 0.6; }
+.texture-marble .scene .mtn-far    { fill: #d3d8da; opacity: 0.5; }
+.texture-marble .scene .mtn-near   { fill: #b8c2c0; opacity: 0.55; }
+
+/* ============================================
+   FOCUS VISIBILITY (keyboard navigation)
+   ============================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent-sage-dark);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Inputs sit inside pill wrappers that already show a focus ring, so keep
+   the outline tight to the wrapper rather than doubling up */
+.header-search input:focus-visible,
+.hero-search input:focus-visible,
+.cta-search input:focus-visible {
+  outline-offset: -2px;
+}
+
+/* Solid-fill buttons need a light ring to stay visible against sage */
+.btn-primary:focus-visible,
+.btn-shop-now:focus-visible,
+.back-to-top:focus-visible,
+.hero-search button:focus-visible,
+.cta-search button:focus-visible {
+  outline-color: var(--text-primary);
+}
+
+/* Category links in the sidebar filter panel */
+.filter-link {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+
+.filter-link:hover { color: var(--accent-sage); }
+
+/* Inline links inside prose content */
+.content-link {
+  color: var(--accent-sage-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.content-link:hover { color: var(--accent-sage); }
+
+/* ============================================
+   SCROLL REVEAL + MICRO-INTERACTIONS
+   ============================================ */
+.reveal-on .product-card,
+.reveal-on .category-card,
+.reveal-on .why-card,
+.reveal-on .section-title {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on .product-card.in,
+.reveal-on .category-card.in,
+.reveal-on .why-card.in,
+.reveal-on .section-title.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Images fade in once loaded (no flash of broken/empty box) */
+.reveal-on .product-image img,
+.reveal-on .product-main-image {
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+.reveal-on .product-image img.img-loaded,
+.reveal-on .product-main-image.img-loaded {
+  opacity: 1;
+}
+
+/* Header gains depth after you scroll */
+.header.scrolled {
+  background: rgba(250, 248, 245, 0.95);
+  box-shadow: var(--shadow-md);
+}
+
+/* Back-to-top button */
+.back-to-top {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--accent-sage);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(122, 158, 126, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.9);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s, background 0.2s;
+  z-index: 90;
+}
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.back-to-top:hover {
+  background: var(--accent-sage-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(122, 158, 126, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on .product-card,
+  .reveal-on .category-card,
+  .reveal-on .why-card,
+  .reveal-on .section-title,
+  .reveal-on .product-image img,
+  .reveal-on .product-main-image {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .back-to-top { transition: opacity 0.2s, visibility 0.2s; }
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 1024px) {
@@ -1641,6 +2018,50 @@ input, select { font-family: inherit; }
   .nav { display: none; }
   .mobile-menu-btn { display: block; }
   .header-search { display: none; }
+
+  /* Tap targets: minimum 44x44 on touch screens (desktop spacing unchanged) */
+  .mobile-menu-btn {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-quick-links a,
+  .pill,
+  .tag {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer-links a,
+  .filter-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumb {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .breadcrumb a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .logo {
+    min-height: 44px;
+  }
+
+  .btn,
+  .btn-sm {
+    min-height: 44px;
+  }
 
   .hero { padding: 52px 0 40px; }
   .hero-title { font-size: 2.2rem; }
