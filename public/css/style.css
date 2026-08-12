@@ -1817,7 +1817,7 @@ input, select { font-family: inherit; }
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85 0.04' numOctaves='3' seed='9'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23l)' opacity='0.30'/%3E%3C/svg%3E");
 }
 
-/* --- Option 3: Raw Silk (most tactile) --- */
+/* --- Option 3: Raw Silk (most tactile, warm) --- */
 .texture-raw-silk .fabric-texture {
   opacity: 0.55;
   background-image:
@@ -1828,6 +1828,43 @@ input, select { font-family: inherit; }
       transparent 0 11px, rgba(146, 126, 100, 0.04) 11px 13px),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.028' numOctaves='4' seed='11'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23s)' opacity='0.42'/%3E%3C/svg%3E");
 }
+
+/* --- Option 4: Marble Silk --- */
+/* Raw-silk fibre grain in a marble colourway: cool stone veining drifting
+   through the weave, kept pale so it reads as polished stone, not noise. */
+.texture-marble .fabric-texture {
+  opacity: 0.62;
+  background-image:
+    /* soft cloudy veining — low frequency turbulence reads as stone */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='v'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.021' numOctaves='5' seed='23'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.55' intercept='-0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23v)' opacity='0.55'/%3E%3C/svg%3E"),
+    /* fine warp threads, cool grey */
+    repeating-linear-gradient(90deg,
+      transparent 0 5px, rgba(122, 128, 138, 0.042) 5px 6px),
+    /* slubs across the weave */
+    repeating-linear-gradient(0deg,
+      transparent 0 11px, rgba(122, 128, 138, 0.032) 11px 13px),
+    /* raw-silk fibre grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.028' numOctaves='4' seed='11'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23m)' opacity='0.34'/%3E%3C/svg%3E");
+}
+
+/* Marble's stone veining sits darker than the warm weave, so deepen the
+   secondary/muted copy to keep comfortable WCAG AA headroom on it */
+.texture-marble {
+  --text-secondary: #5d5046;
+  --text-muted: #7d7065;
+}
+
+/* Marble reads as cool stone, so cool the warm field scene behind it
+   and lift the page toward an alabaster base */
+.texture-marble .scene .sky {
+  background: linear-gradient(to bottom,
+    #fbfbfc 0%, #f6f7f8 26%, #f1f2f3 46%, #edeff0 62%, #e8ebea 72%);
+}
+
+.texture-marble .scene .hill-back  { fill: #cfd6cd; opacity: 0.55; }
+.texture-marble .scene .hill-front { fill: #bcc6bb; opacity: 0.6; }
+.texture-marble .scene .mtn-far    { fill: #d3d8da; opacity: 0.5; }
+.texture-marble .scene .mtn-near   { fill: #b8c2c0; opacity: 0.55; }
 
 /* ============================================
    FOCUS VISIBILITY (keyboard navigation)
